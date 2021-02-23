@@ -26,9 +26,9 @@ DEFAULT_PULSE_LEN = "230"
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_NAME): cv.string,
-    vol.Required(CONF_ON_VAL): cv.byte,
-    vol.Required(CONF_OFF_VAL): cv.byte,
-    vol.Required(CONF_PULSE_LEN): cv.byte,
+    vol.Required(CONF_ON_VAL): cv.string,
+    vol.Required(CONF_OFF_VAL): cv.string,
+    vol.Required(CONF_PULSE_LEN): cv.string,
     vol.Optional(CONF_INITIAL_VALUE, default=DEFAULT_INITIAL_VALUE): cv.string,
 })
 
