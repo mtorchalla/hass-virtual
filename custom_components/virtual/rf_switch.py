@@ -15,11 +15,20 @@ _LOGGER = logging.getLogger(__name__)
 
 CONF_NAME = "name"
 CONF_INITIAL_VALUE = "initial_value"
+CONF_ON_VAL = "on_val"
+CONF_OFF_VAL = "off_val"
+CONF_PULSE_LEN = "pulse_len"
 
 DEFAULT_INITIAL_VALUE = "off"
+DEFAULT_ON_VAL = "0"
+DEFAULT_ON_VAL = "0"
+DEFAULT_PULSE_LEN = "230"
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_NAME): cv.string,
+    vol.Required(CONF_ON_VAL): cv.byte,
+    vol.Required(CONF_OFF_VAL): cv.byte,
+    vol.Required(CONF_PULSE_LEN): cv.byte,
     vol.Optional(CONF_INITIAL_VALUE, default=DEFAULT_INITIAL_VALUE): cv.string,
 })
 
@@ -37,6 +46,9 @@ class VirtualSwitch(SwitchEntity):
         self._name = config.get(CONF_NAME)
         self._unique_id = self._name.lower().replace(' ', '_')
         self._state = config.get(CONF_INITIAL_VALUE)
+        self._state = config.get(CONF_ON_VAL)
+        self._state = config.get(CONF_OFF_VAL)
+        self._state = config.get(CONF_PULSE_LEN)
         _LOGGER.info('VirtualSwitch: {} created'.format(self._name))
 
     @property
@@ -70,6 +82,9 @@ class VirtualSwitch(SwitchEntity):
         """Return the device state attributes."""
         attrs = {
             'friendly_name': self._name,
-            'unique_id': self._unique_id
+            'unique_id': self._unique_id,
+            'on_val': self._unique_id,
+            'off_val': self._unique_id,
+            'pulse_len': self._unique_id
         }
         return attrs
