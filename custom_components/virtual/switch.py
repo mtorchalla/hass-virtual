@@ -47,9 +47,11 @@ class VirtualSwitch(SwitchEntity):
     def __init__(self, config):
         """Initialize the Virtual switch device."""
         self._name = config.get(CONF_NAME)
-        self._unique_id = config.get(CONF_UNIQUE_ID)
-        if not self._unique_id == "none":
+        unique_id = config.get(CONF_UNIQUE_ID)
+        if not unique_id == "none":
             self._unique_id = self._name.lower().replace(' ', '_')
+        else:
+            self._unique_id = unique_id
         self._state = config.get(CONF_INITIAL_VALUE)
         self._state = config.get(CONF_ON_VAL)
         self._state = config.get(CONF_OFF_VAL)
