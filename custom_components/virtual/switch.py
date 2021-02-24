@@ -21,7 +21,7 @@ CONF_OFF_VAL = "off_val"
 CONF_PULSE_LEN = "pulse_len"
 
 DEFAULT_INITIAL_VALUE = "off"
-DEFAULT_UNIQUE_ID = None
+DEFAULT_UNIQUE_ID = ""
 DEFAULT_ON_VAL = "0"
 DEFAULT_ON_VAL = "0"
 DEFAULT_PULSE_LEN = "230"
@@ -48,7 +48,7 @@ class VirtualSwitch(SwitchEntity):
         """Initialize the Virtual switch device."""
         self._name = config.get(CONF_NAME)
         self._unique_id = config.get(CONF_UNIQUE_ID)
-        if self._unique_id is None:
+        if not self._unique_id:
             self._unique_id = self._name.lower().replace(' ', '_')
         self._state = config.get(CONF_INITIAL_VALUE)
         self._state = config.get(CONF_ON_VAL)
